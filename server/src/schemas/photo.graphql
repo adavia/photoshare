@@ -1,0 +1,39 @@
+scalar DateTime
+scalar Upload
+
+enum PhotoCategory {
+  SELFIE
+  PORTRAIT
+  ACTION
+  LANDSCAPE
+  GRAPHIC
+}
+
+type Photo {
+  id: ID!
+  url: String
+  thumb: String
+  name: String
+  description: String
+  category: PhotoCategory!
+  created: DateTime!
+  postedBy: User!
+  taggedUsers: [User!]!
+}
+
+type Query {
+  totalPhotos: Int!
+  allPhotos: [Photo!]!
+}
+
+input PostPhotoInput {
+  file: [Upload!]!
+}
+
+type Mutation {
+  createPhoto(input: PostPhotoInput!): [Photo!]!
+}
+
+type Subscription {
+  newPhoto: Photo!
+}

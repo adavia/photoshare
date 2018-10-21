@@ -1,0 +1,19 @@
+type User {
+  id: ID!
+  username: String!
+  email: String!
+  postedPhotos: [Photo!]!
+  inPhotos: [Photo!]!
+}
+
+type Query {
+  me: User
+  totalUsers: Int!
+  allUsers: [User!]!
+}
+
+type Mutation {
+  signup(email: String!, username: String!, password: String!): User!
+  login(email: String!, password: String!): User!
+  logout: Boolean
+}

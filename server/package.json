@@ -1,0 +1,39 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "clean": "rm -rf build && mkdir build",
+    "build-babel": "babel -d ./build ./src -s",
+    "build": "npm run clean && npm run build-babel",
+    "serve": "npm run build && node ./build/index.js",
+    "start": "nodemon --exec babel-node src/index.js"
+  },
+  "dependencies": {
+    "apollo-server-express": "^2.1.0",
+    "bcrypt-nodejs": "^0.0.3",
+    "connect-mongo": "^2.0.1",
+    "dataloader": "^1.4.0",
+    "dotenv": "^6.0.0",
+    "express": "^4.16.3",
+    "express-session": "^1.15.6",
+    "graphql": "^14.0.2",
+    "graphql-middleware": "^1.7.7",
+    "graphql-playground-middleware-express": "^1.7.3",
+    "graphql-tools": "^4.0.1",
+    "merge-graphql-schemas": "^1.5.7",
+    "mongoose": "^5.3.0",
+    "sharp": "^0.21.0",
+    "shortid": "^2.2.13"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-jest": "^23.6.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-stage-3": "^6.24.1",
+    "jest": "^23.6.0",
+    "nodemon": "^1.18.4"
+  }
+}
