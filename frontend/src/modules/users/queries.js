@@ -15,6 +15,9 @@ export const ALL_USERS_QUERY = gql`
     totalUsers
     allUsers {
       id
+      avatar {
+        thumb
+      }
       username
       email
     }

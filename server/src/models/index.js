@@ -7,6 +7,7 @@ mongoose.connect(`mongodb://${config.db.host}/${config.db.name}`, {
   useNewUrlParser: true 
 });
 mongoose.set('useCreateIndex', true);
+mongoose.set('debug', true);
 
 mongoose.connection.on('error', (err) => {
 	if (err) throw err;

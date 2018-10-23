@@ -59,8 +59,8 @@ export default {
         return `${url}/thumbs/${parent.name}`
       }
     },
-    postedBy: async (parent, args, { models }) => {
-      return await models.User.findById(parent.postedBy);
+    postedBy: (parent, args, { loaders }) => {
+      return loaders.userLoader.load(parent.postedBy);
     }
   },
 

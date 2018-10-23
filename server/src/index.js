@@ -7,7 +7,7 @@ import expressPlayground from 'graphql-playground-middleware-express';
 import { applyMiddleware } from 'graphql-middleware';
 import { fileLoader, mergeTypes, mergeResolvers } from 'merge-graphql-schemas';
 
-import { userLoader } from './loaders/user';
+import loaders from './loaders';
 
 import db from './models';
 import session from './config/session';
@@ -58,7 +58,7 @@ const server = new ApolloServer({
       ...req,
       url: req.protocol + '://' + req.get('host'),
       models: db.models,
-      userLoader: userLoader()
+      loaders
     }
   },
   subscriptions: {

@@ -5,6 +5,9 @@ export const CREATE_PHOTO_MUTATION = gql`
     createPhoto(input: $input) {
       id
       thumb
+      postedBy {
+        username
+      }
     }
   }
 `

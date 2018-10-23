@@ -6,6 +6,9 @@ export const ALL_PHOTOS_QUERY = gql`
     allPhotos {
       id
       thumb
+      postedBy {
+        username
+      }
     }
   }
 `
