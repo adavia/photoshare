@@ -8,4 +8,7 @@ export const Button = styled(ButtonDefault)`
   &:hover {
     background: ${props => props.theme.colors.yellow};
   }
+  &:focus {
+    box-shadow: none;
+  }
 `

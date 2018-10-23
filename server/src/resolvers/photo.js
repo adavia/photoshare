@@ -10,7 +10,9 @@ export default {
     },
 
     allPhotos: async (parent, args, { models }) => {
-      return await models.Photo.find();
+      const { limit, offset } = args;
+      
+      return await models.Photo.find().skip(offset).limit(limit);
     }
   },
   
