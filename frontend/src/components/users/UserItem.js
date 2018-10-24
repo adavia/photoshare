@@ -2,12 +2,14 @@ import React from 'react';
 import styled from 'react-emotion';
 import { Flex, Box, Text } from 'rebass/emotion';
 
+import noUserImg from '../../images/no_user.png';
+
 const UserItem = ({ user }) => {
   return (  
     <Box px={2} py={2} width={[1, 1/4]}>
       <Item px={3} py={2}>
         <Flex alignItems="center">
-          <Image src={user.avatar.thumb} />
+          <Image src={user.avatar ? user.avatar.thumb : noUserImg} />
           <Details>
             <Name>{user.username}</Name>
             <Description>{user.email}</Description>

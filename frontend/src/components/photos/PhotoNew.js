@@ -20,9 +20,13 @@ class PhotoNew extends PureComponent {
         const { data } = await createPhoto({ variables: { input: { file: files } } });
         this.setState({ files: data.createPhoto },
           () => {
-            const { totalPhotos, allPhotos } = client.readQuery({ query: ALL_PHOTOS_QUERY });
+            const { totalPhotos, allPhotos } = client.readQuery({ 
+              query: ALL_PHOTOS_QUERY,
+              variables: { offset: 0, limit: 5 } 
+            });
             client.writeQuery({
               query: ALL_PHOTOS_QUERY,
+              variables: { offset: 0, limit: 5 },
               data: { 
                 totalPhotos: totalPhotos + data.createPhoto.length,
                 allPhotos: allPhotos.concat(data.createPhoto) 

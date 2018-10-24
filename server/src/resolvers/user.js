@@ -61,8 +61,10 @@ export default {
 
   User: {
     id: parent => parent.id || parent._id,
-    avatar: (parent, args, { models, loaders }) => {
-      return loaders.photoLoader.load(parent.id);
+    avatar: async (parent, args, { models, loaders }) => {
+      if (parent.avatar) {
+        return loaders.photoLoader.load(parent.avatar);
+      } 
     }
   }
 }

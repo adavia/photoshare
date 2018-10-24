@@ -10,8 +10,7 @@ export default {
     },
 
     allPhotos: async (parent, args, { models }) => {
-      const { limit, offset } = args;
-      
+      const { limit, offset } = args; 
       return await models.Photo.find().skip(offset).limit(limit);
     }
   },
@@ -31,6 +30,14 @@ export default {
       
       try {
         const savedPhotos = await models.Photo.insertMany(uploadedFiles);
+        
+        await models.User.update(
+          { _id: session.userId },
+          { $addToSet: {
+            photos: savedPhotos.map(photo => photo._id)
+          },
+          avatar: savedPhotos[0]._id}
+        );
         //pubsub.publish('photo-added', { savedPhotos });
 
         return savedPhotos;

@@ -48,21 +48,31 @@ const userSchema = mongoose.Schema({
       message: 'Already taken!'
     }
   },
+  avatar: {
+    type: mongoose.Schema.Types.ObjectId, 
+    ref : 'Photo'
+  },
   password: {
     type: String,
     required: true
   },
+  photos: [{
+    type: mongoose.Schema.Types.ObjectId, 
+    ref : 'Photo'
+  }],
   inPhotos: [{
     type: mongoose.Schema.Types.ObjectId, 
     ref : 'Photo'
   }]
 }, { 
   toObject: { 
+    //virtuals: true,
     transform: function (doc, ret) {
       delete ret.password;
     }
   }, 
   toJSON: { 
+    //virtuals: true,
     transform: function (doc, ret) {
       delete ret.password;
     } 
@@ -79,6 +89,12 @@ userSchema.pre('save', function(next) {
 userSchema.methods.validPassword = function(password) {
   return bcrypt.compareSync(password, this.password);
 }
+
+// userSchema.virtual('photos', {
+//   ref: 'Photo',
+//   localField: '_id',
+//   foreignField: 'postedBy'
+// });
 
 const User = mongoose.model('User', userSchema);
 
